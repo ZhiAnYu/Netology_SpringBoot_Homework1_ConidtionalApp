@@ -1,9 +1,10 @@
 package ru.netology.SpringBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.netology.SpringBootDemo.domain.Person;
 
 @RestController
 // 1 вариант:
@@ -18,8 +19,10 @@ public class MyDevController {
 //        this.from = from;
 //    }
 
-    @GetMapping("/")
-    private String hello() {
-        return String.format("Hello from %s!", from);
+    @PostMapping("/hello")
+    private String hello(@RequestBody Person guest) {
+        return String.format("Hello from %s to name %s age %d!", from,
+                guest.getName(),
+                guest.getAge());
     }
 }
